@@ -1,0 +1,48 @@
+
+Bundle-Version:             1.0.0.${tstamp}
+
+-remoteworkspace        true
+-runfw:                 org.apache.felix.framework
+-runee:                 JavaSE-1.8
+
+javac.source:           1.8
+javac.target:           1.8
+javac.compliance:       1.8
+javac.debug:            on
+
+mvn-driver-modifier                   =         ${if;${is;${driver};gradle};/gradle}
+
+target-dir                            =         target
+src                                   =         src/main/java, src/main/resources
+testsrc                               =         src/test/java
+bin                                   =         ${target-dir}${mvn-driver-modifier}/classes
+testbin                               =         ${target-dir}${mvn-driver-modifier}/test-classes
+
+-plugin: \
+    aQute.bnd.repository.maven.provider.MavenBndRepository; \
+        snapshotUrl="https://oss.sonatype.org/content/repositories/snapshots/"; \
+        releaseUrl=https://repo.maven.apache.org/maven2/; \
+        index=${.}/central.mvn; \
+        readOnly=true; \
+        name="Central", \
+
+-runblacklist.enroute: \
+    osgi.identity;filter:='(osgi.identity=osgi.enroute.base.api)', \
+    osgi.identity;filter:='(osgi.identity=osgi.cmpn)', \
+    osgi.identity;filter:='(osgi.identity=osgi.core)', \
+    osgi.identity;filter:='(osgi.identity=biz.aQute.junit)', \
+    osgi.identity;filter:='(osgi.identity=biz.aQute.launcher)', \
+    osgi.identity;filter:='(osgi.identity=biz.aQute.remote.launcher)', \
+    osgi.identity;filter:='(osgi.identity=org.osgi.service.*)', \
+    osgi.identity;filter:='(osgi.identity=slf4j.*)', \
+
+
+-runsystemcapabilities.dflt:    ${native_capability}
+
+debug-bundles: \
+    osgi.identity;filter:='(osgi.identity=osgi.enroute.webconsole.xray.provider)',\
+    osgi.implementation;filter:='(osgi.implementation=osgi.metatype)',\
+    osgi.implementation;filter:='(osgi.implementation=osgi.event)',\
+    osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
+    osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)', \
+    osgi.identity;filter:='(osgi.identity=org.apache.felix.webconsole.plugins.ds)'

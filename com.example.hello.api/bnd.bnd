@@ -1,0 +1,6 @@
+#
+# com.example.hello.api
+#
+
+-buildpath:  \
+	osgi.annotation

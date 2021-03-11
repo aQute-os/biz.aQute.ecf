@@ -1,0 +1,16 @@
+#
+# com.example.hello.client PROVIDER BUNDLE
+#
+
+-buildpath: \
+	osgi.annotation,\
+	org.osgi.service.component.annotations,\
+	com.example.hello.api,\
+	org.apache.felix.gogo.runtime
+	
+
+-testpath: \
+	biz.aQute.wrapper.junit, \
+	biz.aQute.wrapper.hamcrest, \
+	org.assertj.core
+
