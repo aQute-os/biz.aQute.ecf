@@ -1,4 +1,3 @@
-# bndtools.workspace
-Bndtools Remote Service Workspace
+# aQute Examples ECF
 
-To use this workspace template please see documentation here:  https://wiki.eclipse.org/Bndtools_Support_for_Remote_Services_Development 
+This repository is used for examples and trials with Eclipse ECF
